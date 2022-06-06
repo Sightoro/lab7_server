@@ -19,6 +19,7 @@ HunterGate(
   URL "https://github.com/cpp-pm/hunter/archive/v0.23.314.tar.gz"
   SHA1 "95c47c92f68edb091b5d6d18924baabe02a6962a"
 )
+link_libraries(ws2_32 wsock32)
 
 # TODO: rename project and delete this comment
 project(template VERSION 0.1.0)
@@ -28,8 +29,16 @@ string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 
 # new versions of cmake contain gtest search files
 # commented out to increase the build speed.
-# hunter_add_package(GTest)
+hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
+hunter_add_package(Boost)
+find_package(Boost CONFIG REQUIRED)
+hunter_add_package(Boost COMPONENTS system filesystem)
+find_package(Boost CONFIG REQUIRED system filesystem)
+hunter_add_package(Beast)
+find_package(Beast CONFIG REQUIRED)
+hunter_add_package(nlohmann_json)
+find_package(nlohmann_json CONFIG REQUIRED)
 
 add_library(${PROJECT_NAME} STATIC
   # enum your files and delete this comment
@@ -45,7 +54,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   "$<INSTALL_INTERFACE:include>"
 )
 
-target_link_libraries(demo ${PROJECT_NAME})
+target_link_libraries(demo ${PROJECT_NAME} Boost::system Boost::filesystem Boost::boost Beast::Beast nlohmann_json::nlohmann_json)
 
 if(BUILD_TESTS)
   add_executable(tests

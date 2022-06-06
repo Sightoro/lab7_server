@@ -1,0 +1,16 @@
+{
+  "suggestions": [
+    {
+      "text": "hello",
+      "position": 0
+    },
+    {
+      "text": "hello world",
+      "position": 1
+    },
+    {
+      "text": "helm",
+      "position": 2
+    }
+  ]
+}
