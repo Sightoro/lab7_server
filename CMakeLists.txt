@@ -19,7 +19,6 @@ HunterGate(
   URL "https://github.com/cpp-pm/hunter/archive/v0.23.314.tar.gz"
   SHA1 "95c47c92f68edb091b5d6d18924baabe02a6962a"
 )
-link_libraries(ws2_32 wsock32)
 
 # TODO: rename project and delete this comment
 project(template VERSION 0.1.0)
@@ -53,8 +52,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:include>"
 )
-
-target_link_libraries(demo ${PROJECT_NAME} Boost::system Boost::filesystem Boost::boost Beast::Beast nlohmann_json::nlohmann_json)
+target_link_libraries(demo ${PROJECT_NAME})
+target_link_libraries(${PROJECT_NAME} Boost::system Boost::filesystem Boost::boost Beast::Beast nlohmann_json::nlohmann_json)
 
 if(BUILD_TESTS)
   add_executable(tests
