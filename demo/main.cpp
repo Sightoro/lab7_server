@@ -188,7 +188,7 @@ do_session(tcp::socket& socket)
 int main() {
   try
   {
-    const boost::asio::ip::address_v4 address(2130706433);
+    auto const address = net::ip::make_address("127.0.0.1");
     auto const port = 80;
     auto const doc_root = std::make_shared<std::string>("/v1/api/suggest");
 
@@ -213,7 +213,7 @@ int main() {
   }
   catch (const std::exception& e)
   {
-    std::cerr << "Error: " << e.what() << std::endl;
+    std::cerr << "Error: " << e.what() << std::endl ;
     return EXIT_FAILURE;
   }
 }
